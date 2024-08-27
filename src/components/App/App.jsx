@@ -5,6 +5,7 @@ import Loader from '../Loader/Loader';
 import ImageGallery from '../ImageGallery/ImageGallery';
 import axios from "axios";
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 
 const App = () => {
     const [loading, setLoading] = useState(false);
@@ -42,10 +43,11 @@ const App = () => {
     return (
         <>
             <SearchBar onSubmit={onSubmit} />
+            {loading && <Loader />}
             {error && <ErrorMessage text={'Ooooops... something wet wrong.'} /> }
             {gallery.length > 0 && <ImageGallery data={gallery} />}
+            <LoadMoreBtn />
             
-            {loading && <Loader />}
         </>
     )
 }
