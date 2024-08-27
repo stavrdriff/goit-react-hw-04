@@ -1,0 +1,46 @@
+.button {
+    padding-block: .25rem;
+    padding-inline: .5rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: .25rem;
+    background-color: #fdfdfd;
+    transition: background-color .25s ease-in-out;
+
+    &:hover,
+    &:focus {
+        background-color: #d6d6d6;
+    }
+
+    .prepend {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .text {}
+
+    .append {}
+
+    &.search {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem;
+        border: none;
+
+        .text {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            border: 0;
+            padding: 0;
+            white-space: nowrap;
+            clip-path: inset(100%);
+            clip: rect(0 0 0 0);
+            overflow: hidden;
+        }
+    }
+}

@@ -1,0 +1,24 @@
+.header {
+  width: 100%;
+  background-color: #5900ff;
+  padding: 1rem;
+}
+
+.form {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: .25rem;
+  overflow: hidden;
+
+  input {
+    border: none;
+    flex-grow: 1;
+    outline: none;
+    padding: .5rem .5rem .5rem 0;
+  }
+}
