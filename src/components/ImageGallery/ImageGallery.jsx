@@ -1,13 +1,12 @@
 import ImageCard from "../ImageCard/ImageCard";
+import styles from "./ImageGallery.module.css";
 
 const ImageGallery = ({ data }) => {
-
-  console.log(data)
   return (
     <>
       {data &&
-        <ul>
-          {data.map((image) =>
+        <ul className={styles.gallery}>
+          {data.map(image =>
             <li key={image.id}>
               <ImageCard src={image.urls.small} alt={image.alt_description} />
             </li>

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="favicons/timsolo-1.svg">
+  <link rel="icon" type="image/svg+xml" href="timsolo.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -18,21 +18,6 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
-  <script>
-    let counter = 1;
-    const animateFavicon = () => {
-      const faviconArr = document.querySelectorAll("link[type='image/svg+xml']");
-      const faviconsCount = 12;
-      faviconArr.forEach(item => {
-        item.setAttribute('href', 'favicons/timsolo-' + counter + '.svg');
-      })
-      counter++;
-      if (counter > faviconsCount) {
-        counter = 1
-      }
-    }
-
-    setInterval(animateFavicon, 500);
   </script>
 </body>
 
