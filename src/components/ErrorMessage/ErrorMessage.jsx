@@ -1,10 +1,8 @@
 import styles from "./ErrorMessage.module.css";
 
-const ErrorMessage = (text) => { 
+const ErrorMessage = ({ text }) => { 
   return (
-    <>
-      <p className={styles.error}>{ text }</p>
-    </>
+    <p className={styles.error}>{ text }</p>
   )
 }
 
