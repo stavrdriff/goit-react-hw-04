@@ -1,17 +1,13 @@
 import ImageCard from '../ImageCard/ImageCard';
 import Modal from 'react-modal';
-import styles from './ImageModal.module.css'
 
 const ImageModal = ({ src, alt, isOpen, onClose }) => {
-  Modal.setAppElement('#root');
-
   const handleClose = () => { 
     onClose({src:'', alt:'', isOpen: false})
   }
 
   return (
     <Modal
-      bodyOpenClassName={styles.body}
       aria={{ labelledby: 'photo', describedby: alt }}
       style={
         {
@@ -23,7 +19,7 @@ const ImageModal = ({ src, alt, isOpen, onClose }) => {
       isOpen={isOpen}
       shouldCloseOnOverlayClick={true}
       shouldCloseOnEsc={true}
-      onRequestClose={() => {handleClose}}
+      onRequestClose={handleClose}
       ariaHideApp={false}
       
     >

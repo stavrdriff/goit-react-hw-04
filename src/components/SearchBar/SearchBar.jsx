@@ -26,7 +26,7 @@ const SearchBar = ({ onSubmit }) => {
             name={'request'}
             onChange={(e) => {notify(e.target.value)}}
           />
-          <Button type={'submit'} text={'Search'} search={true} onClick={onSubmit} />
+          <Button type={'submit'} text={'Search'} search={true} onClick={(e) => { e.preventDefault}} />
         </form>
         <Toaster />
       </header>

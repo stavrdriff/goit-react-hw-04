@@ -26,7 +26,6 @@ const App = () => {
 
 
     const handleModal = ({ src, alt, isOpen }) => {
-        console.log(modal)
         setModal({ src: src, alt: alt, isOpen: isOpen })       
     }
 
@@ -72,12 +71,12 @@ const App = () => {
                     }}
                 />
             }
-            {modal.src &&
+            {modal.isOpen &&
                 <ImageModal
-                src={modal.src}
-                alt={modal.alt}
-                isOpen={modal.isOpen}
-                onClose={handleModal}
+                    src={modal.src}
+                    alt={modal.alt}
+                    isOpen={modal.isOpen}
+                    onClose={handleModal}
                 />
             }
 
