@@ -1,6 +1,6 @@
 import Button from "../Button/Button"
 
-const LoadMoreBtn = (onClick) => {
+const LoadMoreBtn = ({ onClick }) => {
   const handleClick = (event) => {
     onClick(event);
   }

@@ -3,37 +3,50 @@ import SearchBar from '../SearchBar/SearchBar';
 import './App.css';
 import Loader from '../Loader/Loader';
 import ImageGallery from '../ImageGallery/ImageGallery';
-import axios from "axios";
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
+import { fetchData } from '../../DTO/api';
+import ImageModal from '../ImageModal/ImageModal';
+
 
 const App = () => {
     const [loading, setLoading] = useState(false);
     const [request, setRequest] = useState('');
-    const [gallery, setGallery] = useState([]);
     const [error, setError] = useState(false);
+    const [page, setPage] = useState(1);
+    const [countPages, setCountPages] = useState(0);
+    const [gallery, setGallery] = useState([]);
+    const [modal, setModal] = useState({src:'', alt:'', isOpen: false})
    
-    const onSubmit = (value) => {
-        setRequest(value);
+    const onSubmit = (request) => {
+        setRequest(request);
+        setPage(1);
+        setGallery([]);
     }
 
-    let page = 1;
+
+    const handleModal = ({ src, alt, isOpen }) => {
+        console.log(modal)
+        setModal({ src: src, alt: alt, isOpen: isOpen })       
+    }
 
     useEffect(() => {
+        if (request === '') {
+            return;
+        }
+
         async function requestImages(page, request) {
-            if (request && page !== page) {
-                try {
-                    setLoading(true);
-                    const response = await axios.get(`https://api.unsplash.com/search/photos?client_id=TU4ZBa3lH_jm6i-xK9KVAmtMVz4-w3j3F5e-qLhH3ho&per_page=16&page=${page}&query=${request}`);
-                    console.log(typeof response.data.results)
-                    setGallery(response.data.results);
-                }
-                catch {
-                    setError(true);
-                }
-                finally {
-                    setLoading(false);
-                }
+            try {
+                setLoading(true);
+                const newGallery = await fetchData(page, request);
+                setCountPages(newGallery.total_pages);
+                setGallery(prevGallery => [...prevGallery, ...newGallery.results])
+            }
+            catch {
+                setError(true);
+            }
+            finally {
+                setLoading(false);
             }
         }
 
@@ -43,10 +56,31 @@ const App = () => {
     return (
         <>
             <SearchBar onSubmit={onSubmit} />
-            {loading && <Loader />}
-            {error && <ErrorMessage text={'Ooooops... something wet wrong.'} /> }
-            {gallery.length > 0 && <ImageGallery data={gallery} />}
-            <LoadMoreBtn />
+            {loading &&
+                <Loader />
+            }
+            {error &&
+                <ErrorMessage text={'Ooooops... something wet wrong.'} />
+            }
+            {gallery &&
+                <ImageGallery data={gallery} onClick={handleModal} />
+            }
+            {countPages > page && !error &&
+                <LoadMoreBtn
+                    onClick={() => {
+                        setPage(page + 1);
+                    }}
+                />
+            }
+            {modal.src &&
+                <ImageModal
+                src={modal.src}
+                alt={modal.alt}
+                isOpen={modal.isOpen}
+                onClose={handleModal}
+                />
+            }
+
             
         </>
     )

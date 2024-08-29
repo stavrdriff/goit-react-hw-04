@@ -1,9 +1,14 @@
 import styles from "./ImageCard.module.css";
 
-const ImageCard = ({ src, alt }) => { 
+const ImageCard = ({ src, alt, contain }) => {
   return (
     <>
-      <div className={styles.container}>
+      <div
+        className={
+          contain ?
+            styles.container + ' ' + styles.contain
+            : styles.container}
+      > 
         <img src={src} alt={alt} />
       </div>
     </>
