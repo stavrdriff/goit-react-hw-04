@@ -54,33 +54,34 @@ const App = () => {
 
     return (
         <>
+        
             <SearchBar onSubmit={onSubmit} />
-            {loading &&
-                <Loader />
-            }
-            {error &&
-                <ErrorMessage text={'Ooooops... something wet wrong.'} />
-            }
-            {gallery &&
-                <ImageGallery data={gallery} onClick={handleModal} />
-            }
-            {countPages > page && !error &&
-                <LoadMoreBtn
-                    onClick={() => {
-                        setPage(page + 1);
-                    }}
-                />
-            }
-            {modal.isOpen &&
-                <ImageModal
-                    src={modal.src}
-                    alt={modal.alt}
-                    isOpen={modal.isOpen}
-                    onClose={handleModal}
-                />
-            }
-
-            
+            <div className="container">
+                {loading &&
+                    <Loader />
+                }
+                {error &&
+                    <ErrorMessage text={'Ooooops... something wet wrong.'} />
+                }
+                {gallery &&
+                    <ImageGallery data={gallery} onClick={handleModal} />
+                }
+                {countPages > page && !error &&
+                    <LoadMoreBtn
+                        onClick={() => {
+                            setPage(page + 1);
+                        }}
+                    />
+                }
+                {modal.isOpen &&
+                    <ImageModal
+                        src={modal.src}
+                        alt={modal.alt}
+                        isOpen={modal.isOpen}
+                        onClose={handleModal}
+                    />
+                }  
+            </div>
         </>
     )
 }
