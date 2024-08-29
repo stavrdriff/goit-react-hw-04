@@ -1,4 +1,4 @@
-import Button from "../Button/Button";
+import { FaSearch } from "react-icons/fa";
 import styles from "./SearchBar.module.css"
 import toast, { Toaster } from 'react-hot-toast';
 
@@ -14,7 +14,7 @@ const SearchBar = ({ onSubmit }) => {
     if (request.value === '') { 
       return;
     }
-    
+
     onSubmit(request.value);
   }
 
@@ -29,7 +29,10 @@ const SearchBar = ({ onSubmit }) => {
             placeholder={'Search images and photos'}
             name={'request'}
           />
-          <Button type={'submit'} text={'Search'} search={true} onClick={(e) => { e.preventDefault}} />
+          <button type={'submit'} className={styles.button}>
+            <span className={styles.icon} aria-hidden={'true'}><FaSearch/></span>
+            <span className={styles.text}>Search</span>
+          </button>
         </form>
         <Toaster />
       </header>
